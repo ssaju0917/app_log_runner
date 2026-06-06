@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { UserCreate } from "@/types/user";
+import { User, UserCreate } from "@/types/user";
 
 type Props = {
-  onSubmit: (input: UserCreate) => Promise<void>;
+  onSubmit: (input: UserCreate) => Promise<User>;
 };
 
 export default function UserForm({ onSubmit }: Props) {
