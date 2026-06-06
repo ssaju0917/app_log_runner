@@ -6,7 +6,7 @@ import { api } from "@/lib/api";
 
 type Props = {
   user: User;
-  onSubmit: (input: UserUpdate) => Promise<void>;
+  onSubmit: (input: UserUpdate) => Promise<User>;
 };
 
 export default function ProfileEditForm({ user, onSubmit }: Props) {
