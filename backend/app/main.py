@@ -5,18 +5,23 @@ import os
 
 app = FastAPI(title="My API", version="1.0.0")
 
-# 許可するオリジン（環境変数から取得）
 origins = [
-    "http://localhost:3001",                              # ローカル開発用
-    os.getenv("FRONTEND_URL", ""),                        # 本番Vercel URL
+    "http://localhost:3001",
+    os.getenv("FRONTEND_URL", ""),
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[o for o in origins if o],              # 空文字を除外
+    allow_origins=[o for o in origins if o],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # OPTIONS を明示
+    allow_headers=[
+        "Content-Type",
+        "Authorization",
+        "Accept",
+        "Origin",
+        "X-Requested-With",
+    ],
 )
 
 app.include_router(user_router)
